@@ -4,7 +4,6 @@ const webpack = require("webpack");
 module.exports = {
     entry: "./index.js",
     mode: "development",
-    target: "electron",
     module: {
         rules: [
             {
