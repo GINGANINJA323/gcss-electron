@@ -10,6 +10,8 @@ const Home = ({ hasSettings, setPage }) => {
             <p>{"It looks like you haven't run this program before. You'll need to complete first time setup "}<p onClick={() => setPage('setup')}>{'here.'}</p></p>
           </> : null
       }
+      <p>{'The GCSS allows you to store saves in a Git repo, through this easy to use front-end.'}</p>
+      <p>{'Use the tabs above to edit your settings, connected games and synchronise your saves.'}</p>
     </>
   );
 }

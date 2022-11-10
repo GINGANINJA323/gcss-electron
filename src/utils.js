@@ -17,10 +17,8 @@ export const loadSettingsFromFile = async() => {
   }
 }
 
-export const init = async(settings) => {
-  console.log('Called.');
+export const saveSettings = async(settings) => {
   const stringSettings = JSON.stringify(settings);
-  console.log(stringSettings);
   try {
     await fs.writeFile('settings.json', stringSettings);
     return true;

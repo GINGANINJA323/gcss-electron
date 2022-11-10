@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Setup = ({ setSettings }) => {
+const Setup = ({ setSettings, setPage }) => {
   const [owner, setOwner] = useState();
   const [auth, setAuth] = useState();
   const [repo, setRepo] = useState();
@@ -11,6 +11,7 @@ const Setup = ({ setSettings }) => {
       owner,
       auth
     });
+    setPage('home')
   }
 
   return (

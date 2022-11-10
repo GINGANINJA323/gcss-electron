@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import TabView from './components/tab-view';
 import GameSetup from './pages/game-setup';
+import GameTable from './pages/game-table';
 import Home from './pages/home';
 import Setup from './pages/setup';
-import { init, loadSettingsFromFile } from './utils';
+import { saveSettings, loadSettingsFromFile } from './utils';
 
 const App = () => {
   const [settings, setSettings] = useState({});
   const [page, setPage] = useState('home');
 
   const saveBaseSettings = () => {
-    init(settings);
+    saveSettings(settings);
   }
 
   const hasSettings = Object.keys(settings).length;
@@ -36,7 +38,8 @@ const App = () => {
 
   const componentMap = {
     home: <Home hasSettings={hasSettings} />,
-    setup: <Setup setSettings={setSettings} />,
+    setup: <Setup setSettings={setSettings} setPage={setPage} />,
+    gameTable: <GameTable setPage={setPage} games={[]} />, // Need to fetch the games from git or use the settings...
     gameSetup: <GameSetup setSettings={setSettings} />
   }
 
@@ -52,12 +55,12 @@ const App = () => {
     }
 
     saveBaseSettings();
-  }, [settings])
+  }, [settings]);
 
   return (
     <>
       {
-        hasSettings ? <></> : null
+        hasSettings ? <TabView tab={page} tabs={Object.keys(componentMap)} changeTab={setPage} /> : null
       }
       {
         componentMap[page]

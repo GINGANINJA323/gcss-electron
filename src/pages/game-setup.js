@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
 
-const GameSetup = ({ setSettings }) => {
+const GameSetup = ({ settings, setSettings }) => {
   const [name, setName] = useState();
   const [path, setPath] = useState();
   const [backupPath, setBackupPath] = useState();
   
   const buildAndSaveSettings = () => {
-    
+    setSettings({
+      ...settings,
+      games: {
+        ...settings.games,
+        [name]: {
+          path,
+          backupPath
+        }
+      }
+    });
   }
 
   return (
